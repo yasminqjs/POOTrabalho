@@ -8,6 +8,7 @@ import java.util.Scanner;
 import entidades.Maquiagem;
 import entidades.Produto;
 import entidades.ProdutoHigiene;
+import entidades.ProdutoAlimenticio;
 import entidades.Remedio;
 import entidades.TinturaParaCabelo;
 
