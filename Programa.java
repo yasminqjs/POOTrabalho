@@ -72,27 +72,38 @@ public class Programa {
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
         System.out.print("Preço: ");
-        double preco = scanner.nextDouble();
+        Double preco = scanner.nextDouble();
         System.out.print("Quantidade: ");
         int quantidade = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Validade: ");
+        System.out.print("Validade (ano-mes): ");
         String validade = scanner.nextLine();
 
+        // Verificar se já existe produto igual mesmo nome evalidade
+        for (Produto p : produtos) {
+            if (p.getNome().equalsIgnoreCase(nome) &&
+                p.getValidade().equalsIgnoreCase(validade)) {
+                p.setQuantidade(p.getQuantidade() + quantidade);
+                System.out.println("Produto já existente. Quantidade somada com sucesso.");
+                return;
+            }
+        }
+
+        // Só chega aqui se não existir um produto igual
         switch (tipo) {
-            case 1:
+            case 1 -> {
                 System.out.print("Tipo (dental/capilar/corporal): ");
                 String tipoHigiene = scanner.nextLine();
                 produtos.add(new ProdutoHigiene(preco, quantidade, nome, validade, tipoHigiene));
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.print("Tarja: ");
                 String tarja = scanner.nextLine();
                 System.out.print("Sintomas: ");
                 String sintomas = scanner.nextLine();
                 produtos.add(new Remedio(preco, quantidade, nome, validade, tarja, sintomas));
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.print("Internacional (sim/nao): ");
                 String internacional = scanner.nextLine();
                 System.out.print("Luxo (sim/nao): ");
@@ -102,8 +113,8 @@ public class Programa {
                 System.out.print("Tipo de pele: ");
                 String tipoPele = scanner.nextLine();
                 produtos.add(new Maquiagem(preco, quantidade, nome, validade, internacional, luxo, cor, tipoPele));
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.print("Internacional (sim/nao): ");
                 String intl = scanner.nextLine();
                 System.out.print("Luxo (sim/nao): ");
@@ -113,12 +124,16 @@ public class Programa {
                 System.out.print("Cor: ");
                 String corTintura = scanner.nextLine();
                 produtos.add(new TinturaParaCabelo(preco, quantidade, nome, validade, intl, lux, tipoCabelo, corTintura));
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("Tipo inválido.");
+                return;
+            }
         }
+
         System.out.println("Produto cadastrado com sucesso!");
     }
+
 
     private static void listarProdutos() {
         if (produtos.isEmpty()) {
