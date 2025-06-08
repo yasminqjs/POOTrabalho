@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import entidades.Maquiagem;
-import entidades.Produto;
-import entidades.ProdutoAlimenticio;
-import entidades.ProdutoHigiene;
-import entidades.Remedio;
-import entidades.TinturaParaCabelo;
+
+import entidades.*;
+
+import clientes.*;
+
+import executavel.FuncoesMenu;
+
 
 public class Programa {
     private static Scanner scanner = new Scanner(System.in);
@@ -24,6 +25,7 @@ public class Programa {
             System.out.println("2. Listar produtos");
             System.out.println("3. Alterar produto");
             System.out.println("4. Remover produto");
+            System.out.println("5. Atender Cliente");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
@@ -34,6 +36,7 @@ public class Programa {
                 case 2 -> listarProdutos();
                 case 3 -> alterarProduto();
                 case 4 -> removerProduto();
+                case 5 -> atenderCliente();
                 case 0 -> System.out.println("Saindo...");
                 default -> System.out.println("Opcao invalida!");
             }
@@ -58,6 +61,28 @@ public class Programa {
         produtos.add(new TinturaParaCabelo(34.90, 8, "Tintura Ruivo", "2026-02", "internacional", "luxo", "cacheado", "ruivo"));
        
     }
+    
+    private static void atenderCliente() {
+    	 System.out.println("informe o tipo de cliente (comum/premium/premiumPlus)");
+    	 String tipoCliente = scanner.nextLine();
+    	 int opcaoC;
+		do {
+    	 System.out.println("1. Adicionar Produto ao carrinho do cliente");
+         System.out.println("2. Remover Produto do carrinho do cliente");
+         System.out.println("3. Pagar conta");
+         System.out.println("0. Sair");
+         opcaoC = scanner.nextInt();
+         scanner.nextLine();
+         switch (opcaoC) {
+         case 1 -> adicionarCarrinho();
+         case 2 -> removerCarrinho();
+         case 3 -> pagarConta();
+         case 0 -> System.out.println("Saindo...");
+         default -> System.out.println("Opcao invalida!");
+     }
+
+    	 } while (opcaoC != 0);
+    }
 
     
     private static void cadastrarProduto() {
@@ -73,27 +98,38 @@ public class Programa {
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
         System.out.print("Preço: ");
-        double preco = scanner.nextDouble();
+        Double preco = scanner.nextDouble();
         System.out.print("Quantidade: ");
         int quantidade = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Validade: ");
+        System.out.print("Validade (ano-mes): ");
         String validade = scanner.nextLine();
 
+        // Verificar se já existe produto igual mesmo nome evalidade
+        for (Produto p : produtos) {
+            if (p.getNome().equalsIgnoreCase(nome) &&
+                p.getValidade().equalsIgnoreCase(validade)) {
+                p.setQuantidade(p.getQuantidade() + quantidade);
+                System.out.println("Produto já existente. Quantidade somada com sucesso.");
+                return;
+            }
+        }
+
+        // Só chega aqui se não existir um produto igual
         switch (tipo) {
-            case 1:
+            case 1 -> {
                 System.out.print("Tipo (dental/capilar/corporal): ");
                 String tipoHigiene = scanner.nextLine();
                 produtos.add(new ProdutoHigiene(preco, quantidade, nome, validade, tipoHigiene));
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.print("Tarja: ");
                 String tarja = scanner.nextLine();
                 System.out.print("Sintomas: ");
                 String sintomas = scanner.nextLine();
                 produtos.add(new Remedio(preco, quantidade, nome, validade, tarja, sintomas));
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.print("Internacional (sim/nao): ");
                 String internacional = scanner.nextLine();
                 System.out.print("Luxo (sim/nao): ");
@@ -103,8 +139,8 @@ public class Programa {
                 System.out.print("Tipo de pele: ");
                 String tipoPele = scanner.nextLine();
                 produtos.add(new Maquiagem(preco, quantidade, nome, validade, internacional, luxo, cor, tipoPele));
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.print("Internacional (sim/nao): ");
                 String intl = scanner.nextLine();
                 System.out.print("Luxo (sim/nao): ");
@@ -114,19 +150,24 @@ public class Programa {
                 System.out.print("Cor: ");
                 String corTintura = scanner.nextLine();
                 produtos.add(new TinturaParaCabelo(preco, quantidade, nome, validade, intl, lux, tipoCabelo, corTintura));
-                break;
-            case 5:
+            }
+            case 5 -> {
                 System.out.print("tipo (comida/bedida): ");
                 String tipoComida = scanner.nextLine();
                 System.out.print("Fitness (sim/nao): ");
                 String fitness = scanner.nextLine();
                 produtos.add(new ProdutoAlimenticio(preco, quantidade, nome, validade, tipoComida, fitness));
                 break;
-            default:
+            }
+            default -> {
                 System.out.println("Tipo inválido.");
+                return;
+            }
         }
+
         System.out.println("Produto cadastrado com sucesso!");
     }
+
 
     private static void listarProdutos() {
         if (produtos.isEmpty()) {
