@@ -1,0 +1,14 @@
+package clientes;
+
+public class ClientePremium extends Cliente {
+
+	public ClientePremium(double preco) {
+		super(preco);
+	}
+
+	@Override
+	public double calcularPrecoFinal() {
+		return getPreco() * 0.90; // 18% de desconto
+	}
+
+}
