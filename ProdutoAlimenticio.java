@@ -1,6 +1,6 @@
 package entidades;
 
-public abstract class ProdutoAlimenticio extends Produto {
+public class ProdutoAlimenticio extends Produto {
     private String tipoComida; // comida ou bebida
     private String ehFit; // "sim" ou "nao"
 
