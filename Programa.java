@@ -66,6 +66,7 @@ public class Programa {
         System.out.println("2. Remédio");
         System.out.println("3. Maquiagem");
         System.out.println("4. Tintura para Cabelo");
+        System.out.println("5. Produto Alimenticio");
         int tipo = scanner.nextInt();
         scanner.nextLine();
 
@@ -124,6 +125,14 @@ public class Programa {
                 System.out.print("Cor: ");
                 String corTintura = scanner.nextLine();
                 produtos.add(new TinturaParaCabelo(preco, quantidade, nome, validade, intl, lux, tipoCabelo, corTintura));
+            }
+            case 5 -> {
+                System.out.print("tipo (comida/bedida): ");
+                String tipoComida = scanner.nextLine();
+                System.out.print("Fitness (sim/nao): ");
+                String fitness = scanner.nextLine();
+                produtos.add(new ProdutoAlimenticio(preco, quantidade, nome, validade, tipoComida, fitness));
+                break;
             }
             default -> {
                 System.out.println("Tipo inválido.");
