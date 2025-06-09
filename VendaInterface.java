@@ -1,4 +1,4 @@
-package clientes;
+package interfaces;
 
 public interface VendaInterface {
 	
