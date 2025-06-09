@@ -1,20 +1,15 @@
 package executavel;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import java.text.Normalizer;
 
 import entidades.Maquiagem;
 import entidades.Produto;
 import entidades.ProdutoHigiene;
 import entidades.ProdutoAlimenticio;
-import entidades.ProdutoBeleza;
 import entidades.Remedio;
 import entidades.TinturaParaCabelo;
-import servicos.Sorts;
 
 public class Programa {
     private static Scanner scanner = new Scanner(System.in);
@@ -29,9 +24,6 @@ public class Programa {
             System.out.println("2. Listar produtos");
             System.out.println("3. Alterar produto");
             System.out.println("4. Remover produto");
-            System.out.println("5. Buscar produto");
-            System.out.println("6. Ordenar produto");
-            System.out.println("7. Filtrar produto por tipo");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
@@ -42,9 +34,6 @@ public class Programa {
                 case 2 -> listarProdutos();
                 case 3 -> alterarProduto();
                 case 4 -> removerProduto();
-                case 5 -> buscarProduto();
-                case 6 -> ordenarProduto();
-                case 7 -> filtrarProduto();
                 case 0 -> System.out.println("Saindo...");
                 default -> System.out.println("Opcao invalida!");
             }
@@ -191,7 +180,7 @@ public class Programa {
         System.out.println("Produto não encontrado.");
     }
 
-    private static void removerProduto() {
+     private static void removerProduto() {
         System.out.print("Digite o nome do produto a remover: ");
         String nome = scanner.nextLine();
         boolean removido = false;
@@ -205,112 +194,9 @@ public class Programa {
                 break;
             }
         }
-    }
-    
-    private static void buscarProduto() {
-    	System.out.print("Digite o nome do produto que você está buscando: ");
-    	 String nome = scanner.nextLine();
-    	 List<Produto> busca = new ArrayList<Produto>(); //cria um novo arraylist que vai guardar os resultados da busca
-    	 
-    	 nome = normalizarString(nome);
-    	 
-    	 for (int i = produtos.size() - 1; i >= 0; i--) {
-    		 Produto p = produtos.get(i);
-    	     String nomeP = p.getNome();
-    	     
-    	     nomeP = normalizarString(nomeP);
-    	     
-    	     if(nomeP.length() >= nome.length()) {
-    	    	 if(nomeP.contains(nome)){
-    			busca.add(p); //adiciona o produto caso a palavra buscada contenha parte de seu nome
-    			 }
-    		 }
-    	 }
-    	
-    	 //mostrar os produtos que batem com a busca
-    	 mostrarProdutos(busca);
-         return;
-    }
-    
-    private static String normalizarString(String string) {
-    	string = Normalizer.normalize(string, Normalizer.Form.NFD); //remove os acentos da string
-    	string = string.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-	    string = string.toLowerCase(); //deixa a string toda em minusculo
-	     
-    	return string;
-    }
-    
-    private static void filtrarProduto() {
-    	 System.out.println("Qual tipo de produto você deseja? ");
-    	 System.out.println("1 - Remedio");
-    	 System.out.println("2 - Produto de Beleza");
-    	 System.out.println("3 - Produto de Higiene");
-    	 System.out.println("4 - Produto Alimenticio");
-    	 
-    	 int num = scanner.nextInt();
-    	 Class<?> classe = Produto.class; //cria uma variavel para guardar classes
-    	 switch(num) { 
-    	 	case 1 -> classe = Remedio.class;
-    	 	case 2 -> classe = ProdutoBeleza.class;
-    	 	case 3 -> classe = ProdutoHigiene.class;
-    	 	case 4 -> classe = ProdutoAlimenticio.class;
-    	 	default -> { 
-    	 		System.out.println("O filtro escolhido não é válido!");
-    	 		return;
-    	 	}
-    	 }
-    	 
-    	 List<Produto> filtro = new ArrayList<Produto>();
-    	 
-    	 for(Produto p : produtos) {
-    		 if(classe.isInstance(p)) {
-    			 filtro.add(p);
-    		 }
-    	 }
-    	 
-    	 mostrarProdutos(filtro);
-    }
-    
-   private static void ordenarProduto() { //NAO FINALIZADO
-         List<Produto> ordem = produtos;
-	   
-		 System.out.println("Como você deseja ordenar os produtos?");
-	  	 System.out.println("1 - Preço");
-	  	 System.out.println("2 - Quantidade");
-	  	 System.out.println("3 - Nome");
-	  	 System.out.println("4 - Validade");
-	  	 
-	  	 int num = scanner.nextInt();
-	  	 
-	  	 Sorts sort = new Sorts(); //cria um objeto de sorts para poder realizar os s
-	  	 
-	  	 switch(num) {
-	  	 	case 1 -> Collections.sort(ordem, sort.new SortPreco());
-	  	 	case 2 -> Collections.sort(ordem, sort.new SortQuantidade());
-	  	 	case 3 -> Collections.sort(ordem, sort.new SortNome());
-	  	 	case 4 -> Collections.sort(ordem, sort.new SortValidade());
-	  	 }
-	  	 
-	  	 mostrarProdutos(ordem);
-	  	 
-	  	 return;
-	   
-    }
-   
 
-    
-    private static void mostrarProdutos(List<Produto> lista) { //funcao interna para mostrar os produtos apos uma busca ou filtro
-    	 if (lista.isEmpty()) {
-             System.out.println("\nNenhum produto foi encontrado.");
-             return;
-         }
-    	 System.out.println("\nProdutos Encontrados:");
-         for (Produto p : lista) {
-         	System.out.println(p.toString());
-             System.out.println("----------------------------");
-         }
+        if (!removido) {
+            System.out.println("Produto não encontrado.");
+        }
     }
-    
-    
- 
 }
