@@ -26,6 +26,4 @@ abstract public class Cliente  implements VendaInterface{
 	public double getPreco() {
 		return preco;
 	}
-	
-	
 }
