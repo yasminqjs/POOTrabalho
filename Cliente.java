@@ -1,4 +1,5 @@
 package clientes;
+import interfaces.VendaInterface;
 
 abstract public class Cliente  implements VendaInterface{
 	protected Double preco;
