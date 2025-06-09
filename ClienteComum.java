@@ -1,6 +1,6 @@
 package clientes;
 
-public class ClienteComum extends Cliente  implements VendaInterface {
+public class ClienteComum extends Cliente {
 
 	public ClienteComum(double preco, String cpf) {
 		super(preco, cpf);
