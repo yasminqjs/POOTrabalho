@@ -1,7 +1,6 @@
 package executavel;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -181,18 +180,23 @@ public class Programa {
         System.out.println("Produto não encontrado.");
     }
 
-    private static void removerProduto() {
+     private static void removerProduto() {
         System.out.print("Digite o nome do produto a remover: ");
         String nome = scanner.nextLine();
-        Iterator<Produto> it = produtos.iterator();
-        while (it.hasNext()) {
-            Produto p = it.next();
+        boolean removido = false;
+
+        for (int i = produtos.size() - 1; i >= 0; i--) {
+            Produto p = produtos.get(i);
             if (p.getNome().equalsIgnoreCase(nome)) {
-                it.remove();
+                produtos.remove(i); 
+                removido = true;
                 System.out.println("Produto removido com sucesso.");
-                return;
+                break;
             }
         }
-        System.out.println("Produto não encontrado.");
+
+        if (!removido) {
+            System.out.println("Produto não encontrado.");
+        }
     }
 }
