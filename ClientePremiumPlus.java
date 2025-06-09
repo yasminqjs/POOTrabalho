@@ -2,8 +2,8 @@ package clientes;
 
 public class ClientePremiumPlus extends Cliente {
 	
-	public ClientePremiumPlus(double preco) {
-		super(preco);
+	public ClientePremiumPlus(double preco,String cpf) {
+		super(preco,cpf);
 	}
 
 	@Override
