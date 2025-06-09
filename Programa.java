@@ -2,6 +2,7 @@
 package executavel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ import entidades.ProdutoAlimenticio;
 import entidades.ProdutoBeleza;
 import entidades.Remedio;
 import entidades.TinturaParaCabelo;
+import servicos.Sorts;
 
 public class Programa {
     private static Scanner scanner = new Scanner(System.in);
@@ -271,14 +273,28 @@ public class Programa {
     }
     
    private static void ordenarProduto() { //NAO FINALIZADO
-	   List<Produto> ordem = produtos;
+         List<Produto> ordem = produtos;
 	   
-	   System.out.println("Como você deseja ordenar os produtos?");
-  	 System.out.println("1 - Preço");
-  	 System.out.println("2 - Quantidade");
-  	 System.out.println("3 - Nome");
-  	 System.out.println("4 - Validade");
-	   
+		 System.out.println("Como você deseja ordenar os produtos?");
+	  	 System.out.println("1 - Preço");
+	  	 System.out.println("2 - Quantidade");
+	  	 System.out.println("3 - Nome");
+	  	 System.out.println("4 - Validade");
+	  	 
+	  	 int num = scanner.nextInt();
+	  	 
+	  	 Sorts sort = new Sorts(); //cria um objeto de sorts para poder realizar os s
+	  	 
+	  	 switch(num) {
+	  	 	case 1 -> Collections.sort(ordem, sort.new SortPreco());
+	  	 	case 2 -> Collections.sort(ordem, sort.new SortQuantidade());
+	  	 	case 3 -> Collections.sort(ordem, sort.new SortNome());
+	  	 	case 4 -> Collections.sort(ordem, sort.new SortValidade());
+	  	 }
+	  	 
+	  	 mostrarProdutos(ordem);
+	  	 
+	  	 return;
 	   
     }
    
