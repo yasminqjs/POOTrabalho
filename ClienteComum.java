@@ -1,9 +1,9 @@
 package clientes;
 
-public class ClienteComum extends Cliente {
+public class ClienteComum extends Cliente  implements VendaInterface {
 
-	public ClienteComum(double preco) {
-		super(preco);
+	public ClienteComum(double preco, String cpf) {
+		super(preco, cpf);
 	}
 	
 	@Override
