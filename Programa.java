@@ -2,7 +2,6 @@ package executavel;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.text.Normalizer;
@@ -166,7 +165,7 @@ public class Programa {
         }
     }
 
-    private static void alterarProduto() {
+   private static void alterarProduto() {
     	int quant;
     	double preco;
         System.out.print("Digite o nome do produto a alterar: ");
@@ -190,8 +189,7 @@ public class Programa {
         }
         System.out.println("Produto não encontrado.");
     }
-
-    private static void removerProduto() {
+   private static void removerProduto() {
         System.out.print("Digite o nome do produto a remover: ");
         String nome = scanner.nextLine();
         boolean removido = false;
@@ -199,13 +197,19 @@ public class Programa {
         for (int i = produtos.size() - 1; i >= 0; i--) {
             Produto p = produtos.get(i);
             if (p.getNome().equalsIgnoreCase(nome)) {
-                produtos.remove(i); 
+                produtos.remove(i); // remoção segura
                 removido = true;
                 System.out.println("Produto removido com sucesso.");
                 break;
             }
         }
+
+        if (!removido) {
+            System.out.println("Produto não encontrado.");
+        }
     }
+
+
     
     private static void buscarProduto() {
     	System.out.print("Digite o nome do produto que você está buscando: ");
