@@ -8,7 +8,7 @@ public class ClientePremium extends Cliente {
 
 	@Override
 	public double calcularPrecoFinal() {
-		return getPreco() * 0.90; // 18% de desconto
+		return getPreco() * 0.90; // 10% de desconto
 	}
 
 }
