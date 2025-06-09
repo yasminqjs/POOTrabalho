@@ -1,15 +1,30 @@
 package clientes;
 
-abstract public class Cliente {
-	protected double preco;
+abstract public class Cliente  implements VendaInterface{
+	protected Double preco;
+	protected String cpf;
 	
-	public Cliente(double preco) {
+	public Cliente(Double preco,String cpf) {
+		this.preco = preco;
+		this.cpf = cpf;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+
 	
 	public double getPreco() {
 		return preco;
 	}
 	
-	public abstract double calcularPrecoFinal();
+	
 }
