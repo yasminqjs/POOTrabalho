@@ -2,7 +2,7 @@ package entidades;
 
 public class Produto {
     private Double preco;
-    private Integer quantidade;
+    private Integer quantidade, quantidadeCarr;
     private String nome;
     private String validade;
 
@@ -11,6 +11,8 @@ public class Produto {
         this.quantidade = quantidade;
         this.nome = nome;
         this.validade = validade;
+        this.quantidadeCarr = 0;
+        
     }
     // Getters e Setters
 
@@ -28,6 +30,26 @@ public class Produto {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	public int getQuantidadeCarr() {
+		return quantidadeCarr;
+	}
+
+	public void setQuantidadeCarr(int quantidadeCarr) {
+		this.quantidadeCarr = quantidadeCarr;
+	}
+	
+	public void atualizarQuantidade() {
+		quantidade = quantidade - quantidadeCarr;
+	}
+	
+	public void desfazCarr() {
+		quantidade = quantidade + quantidadeCarr;
+	}
+	
+	public double precoNoCarr() {
+		return quantidadeCarr * preco;
 	}
 
 	public String getNome() {
@@ -48,7 +70,11 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto [preco=" + preco + ", quantidade=" + quantidade + ", nome=" + nome + ", validade=" + validade + "]";
+		return "Nome: " + nome + " | Quantidade = " + quantidade + " | Preco = " + preco + " | Validade = " + validade + " |";
+	}
+	
+	public String toStringCarr() {
+		return "Nome: " + nome + " | Quantidade = " + quantidadeCarr + " | Preco = " + preco + " | Validade = " + validade + " |";
 	}
    
 	
