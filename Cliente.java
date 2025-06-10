@@ -26,4 +26,8 @@ abstract public class Cliente  implements VendaInterface{
 	public double getPreco() {
 		return preco;
 	}
+	public double calcularPrecoFinal(double precoFinal){
+		return precoFinal;
+	}
+	
 }
