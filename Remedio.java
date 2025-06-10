@@ -28,7 +28,7 @@ public class Remedio extends Produto {
 
 	@Override
 	public String toString() {
-		return super.toString() + "Remedio [tarja=" + tarja + ", sintomasAparentes=" + sintomasAparentes + "]";
+		return super.toString() + " Categoria: Remedio | Tarja: "+ tarja + " | " + "SintomasAparentes: " + sintomasAparentes + " |";
 	}
 
   

@@ -32,6 +32,7 @@ public class Programa {
             System.out.println("5. Buscar produto");
             System.out.println("6. Ordenar produto");
             System.out.println("7. Filtrar produto por tipo");
+            System.out.println("8. Atender Cliente");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
@@ -45,6 +46,7 @@ public class Programa {
                 case 5 -> buscarProduto();
                 case 6 -> ordenarProduto();
                 case 7 -> filtrarProduto();
+                case 8 -> atenderCliente();
                 case 0 -> System.out.println("Saindo...");
                 default -> System.out.println("Opcao invalida!");
             }
@@ -70,6 +72,29 @@ public class Programa {
        
     }
 
+      protected static void atenderCliente() {
+    	 System.out.println("informe o tipo de cliente (comum/premium/premiumPlus)");
+    	 String tipoCliente = scanner.nextLine();
+    	 int opcaoC;
+		do {
+    	 System.out.println("1. Adicionar Produto ao carrinho do cliente");
+         System.out.println("2. Remover Produto do carrinho do cliente");
+         System.out.println("3. Ver carrinho do cliente");
+         System.out.println("4. Pagar conta");
+         System.out.println("0. Sair");
+         opcaoC = scanner.nextInt();
+         scanner.nextLine();
+         switch (opcaoC) {
+         case 1 -> FuncoesMenu.adicionarCarrinho();
+         case 2 -> FuncoesMenu.removerCarrinho();
+         case 3 -> FuncoesMenu.verCarrinho();
+         //case 4 -> FuncoesMenu.pagarConta();
+         case 0 -> FuncoesMenu.tchauCarrinho();
+         default -> System.out.println("Opcao invalida!");
+     }
+
+    	 } while (opcaoC != 0);
+    }
     
     private static void cadastrarProduto() {
         System.out.println("Escolha o tipo de produto para cadastrar:");
@@ -161,9 +186,11 @@ public class Programa {
             System.out.println("Nenhum produto cadastrado.");
             return;
         }
+        int i=1;
         for (Produto p : produtos) {
-        	System.out.println(p.toString());
-            System.out.println("----------------------------");
+        	System.out.println(i + ".  " + p.toString());
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+            i++;
         }
     }
 
@@ -316,6 +343,3 @@ public class Programa {
              System.out.println("----------------------------");
          }
     }
-   
- 
-}
