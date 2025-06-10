@@ -1,18 +1,21 @@
 package entidades;
 
+import java.time.LocalDate;
+
 public class Produto {
     private Double preco;
     private Integer quantidade, quantidadeCarr;
     private String nome;
-    private String validade;
+    private LocalDate validade;
 
-    public Produto(double preco, int quantidade, String nome, String validade) {
+    public Produto(double preco, int quantidade, String nome, String validadeEmString) {
         this.preco = preco;
         this.quantidade = quantidade;
         this.nome = nome;
+        LocalDate validade = LocalDate.parse(validadeEmString);
         this.validade = validade;
         this.quantidadeCarr = 0;
-        
+
     }
     // Getters e Setters
 
@@ -31,8 +34,8 @@ public class Produto {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
-	public int getQuantidadeCarr() {
+  
+  	public int getQuantidadeCarr() {
 		return quantidadeCarr;
 	}
 
@@ -60,11 +63,17 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public String getValidade() {
+	public LocalDate getValidade() {
 		return validade;
 	}
 
-	public void setValidade(String validade) {
+	public void setValidade(String validadeEmString) {
+		LocalDate validade = LocalDate.parse(validadeEmString);
+		this.validade = validade;
+		
+	}
+	
+	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
 
@@ -76,6 +85,4 @@ public class Produto {
 	public String toStringCarr() {
 		return "Nome: " + nome + " | Quantidade = " + quantidadeCarr + " | Preco = " + preco + " | Validade = " + validade + " |";
 	}
-   
-	
 }
