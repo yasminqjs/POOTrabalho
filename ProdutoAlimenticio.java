@@ -28,7 +28,7 @@ public class ProdutoAlimenticio extends Produto {
 
 	@Override
 	public String toString() {
-		return super.toString() + "ProdutoAlimenticio [tipoComida=" + tipoComida + ", ehFit=" + ehFit + "]";
+		return super.toString() + " Categoria: ProdutoAlimenticio | TipoComida: " + tipoComida + " | Fit?: " + ehFit + " |";
 	}
 
 	
