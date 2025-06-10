@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import executavel.Programa;
+
+import clientes.Cliente;
+import clientes.ClienteComum;
+import clientes.ClientePremium;
+import clientes.ClientePremiumPlus;
 import entidades.Maquiagem;
 import entidades.Produto;
 import entidades.ProdutoAlimenticio;
@@ -13,8 +17,23 @@ import entidades.ProdutoBeleza;
 import entidades.ProdutoHigiene;
 import entidades.Remedio;
 import entidades.TinturaParaCabelo;
+import executavel.Programa;
 
 public class FuncoesMenu {
+	
+	
+	
+	private static List<Cliente> clientes = new ArrayList<>();
+
+    //funcao de cadastrar clientes
+    public static void cadastrarClientes() {
+        clientes.add(new ClienteComum(0, "123.456.789-01"));
+        clientes.add(new ClienteComum(0, "111.222.333-44"));
+        clientes.add(new ClientePremium(0, "111.111.111-11"));
+        clientes.add(new ClientePremium(0, "222.222.222-22"));
+        clientes.add(new ClientePremiumPlus(0, "777.777.777-77"));
+        clientes.add(new ClientePremiumPlus(0, "095.123.086-91"));
+    }
 	public static Scanner scanner = new Scanner(System.in);
 	protected static List<Produto> carrinho = new ArrayList<>();
 	public static void adicionarCarrinho(){
@@ -133,8 +152,8 @@ public class FuncoesMenu {
 	    }
 
 	      public static void atenderCliente() {
-	    	 System.out.println("informe o tipo de cliente (comum/premium/premiumPlus)");
-	    	 String tipoCliente = scanner.nextLine();
+	    	 System.out.println("Informe o CPF do cliente (XXX.XXX.XXX-XX)");
+	    	 String cpf = scanner.nextLine();
 	    	 int opcaoC;
 			do {
 	    	 System.out.println("1. Adicionar Produto ao carrinho do cliente");
@@ -148,6 +167,7 @@ public class FuncoesMenu {
 	         case 1 -> FuncoesMenu.adicionarCarrinho();
 	         case 2 -> FuncoesMenu.removerCarrinho();
 	         case 3 -> FuncoesMenu.verCarrinho();
+	         case 4 -> FuncoesMenu.RealizarPagamento(cpf);
 	         //case 4 -> FuncoesMenu.pagarConta();
 	         case 0 -> FuncoesMenu.tchauCarrinho();
 	         default -> System.out.println("Opcao invalida!");
@@ -391,6 +411,35 @@ public class FuncoesMenu {
 	    }
 	   
 	   
+	   
+	   
+	   public static void RealizarPagamento(String cpf) {
+		   
+			double precoFinal=0;
+			 if (carrinho.isEmpty()) {
+		            System.out.println("Nenhum produto no carrinho");
+		            return;
+		        }
+			 else {
+	        for (Produto p : carrinho) {
+	        	
+	        	precoFinal += p.precoNoCarr();
+		}
+			 }
+		   
+		   
+		   
+		   for (Cliente c: clientes) {
+			   if(c.getCpf().equals(cpf)) {
+				System.out.println("Cliente Encontrado é um "+ c.getClass());
+				System.out.printf("Preço: %.2f%n", c.calcularPrecoFinal(precoFinal));
+
+			   }
+				   
+		
+		   }
+		   
+	   }
 	    
 	    public static void mostrarProdutos(List<Produto> lista) { //funcao interna para mostrar os produtos apos uma busca ou filtro
 	    	 if (lista.isEmpty()) {
