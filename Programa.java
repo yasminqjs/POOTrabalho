@@ -13,6 +13,7 @@ public class Programa {
 
     public static void main(String[] args) {
         FuncoesMenu.cadastrarAutomaticamente();
+        FuncoesMenu.cadastrarClientes();
         int opcao;
         do {
             System.out.println("\n--- MENU ---");
