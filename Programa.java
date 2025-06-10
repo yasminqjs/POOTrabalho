@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Locale;
 
-import entidades.*;
-
-import clientes.*;
+import entidades.Maquiagem;
+import entidades.Produto;
+import entidades.ProdutoAlimenticio;
+import entidades.ProdutoHigiene;
+import entidades.Remedio;
+import entidades.TinturaParaCabelo;
 
 import executavel.FuncoesMenu;
 
 
 public class Programa {
-    private static Scanner scanner = new Scanner(System.in);
-    private static List<Produto> produtos = new ArrayList<>();
+    protected static Scanner scanner = new Scanner(System.in);
+    protected static List<Produto> produtos = new ArrayList<>();
 
     public static void main(String[] args) {
         cadastrarAutomaticamente();
@@ -62,22 +66,24 @@ public class Programa {
        
     }
     
-    private static void atenderCliente() {
+    protected static void atenderCliente() {
     	 System.out.println("informe o tipo de cliente (comum/premium/premiumPlus)");
     	 String tipoCliente = scanner.nextLine();
     	 int opcaoC;
 		do {
     	 System.out.println("1. Adicionar Produto ao carrinho do cliente");
          System.out.println("2. Remover Produto do carrinho do cliente");
-         System.out.println("3. Pagar conta");
+         System.out.println("3. Ver carrinho do cliente");
+         System.out.println("4. Pagar conta");
          System.out.println("0. Sair");
          opcaoC = scanner.nextInt();
          scanner.nextLine();
          switch (opcaoC) {
-         case 1 -> adicionarCarrinho();
-         case 2 -> removerCarrinho();
-         case 3 -> pagarConta();
-         case 0 -> System.out.println("Saindo...");
+         case 1 -> FuncoesMenu.adicionarCarrinho();
+         case 2 -> FuncoesMenu.removerCarrinho();
+         case 3 -> FuncoesMenu.verCarrinho();
+         //case 4 -> FuncoesMenu.pagarConta();
+         case 0 -> FuncoesMenu.tchauCarrinho();
          default -> System.out.println("Opcao invalida!");
      }
 
@@ -169,14 +175,16 @@ public class Programa {
     }
 
 
-    private static void listarProdutos() {
+    protected static void listarProdutos() {
         if (produtos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado.");
             return;
         }
+        int i=1;
         for (Produto p : produtos) {
-        	System.out.println(p.toString());
-            System.out.println("----------------------------");
+        	System.out.println(i + ".  " + p.toString());
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+            i++;
         }
     }
 
