@@ -7,8 +7,11 @@ public class ClientePremium extends Cliente {
 	}
 
 	@Override
-	public double calcularPrecoFinal() {
-		return getPreco() * 0.90; // 10% de desconto
+	public double calcularPrecoFinal(double preco) {
+		return preco * 0.90; // 10% de desconto
 	}
-
+	
+	public String toString() {
+		return "Cliente Premium";
+	}
 }

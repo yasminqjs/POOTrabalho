@@ -20,7 +20,7 @@ public class ProdutoHigiene extends Produto {
 
 	@Override
 	public String toString() {
-		return super.toString() + "ProdutoHigiene [tipo=" + tipo + "]";
+		return super.toString() + " Categoria: Higiene | Tipo: " + tipo + " |";
 	}
 
 	

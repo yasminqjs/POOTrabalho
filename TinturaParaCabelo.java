@@ -28,9 +28,9 @@ public class TinturaParaCabelo extends ProdutoBeleza {
 
 	@Override
 	public String toString() {
-		return super.toString() +  "TinturaParaCabelo [tipoDeCabelo=" + tipoDeCabelo + ", cor=" + cor + "]";
+		return super.toString() + " Categoria: Produto de Beleza (Tintura de Cabelo) | Tipo De Cabelo: " + tipoDeCabelo + " | Cor: " + cor + " |";
+		
 	}
 	
 	
 }
-

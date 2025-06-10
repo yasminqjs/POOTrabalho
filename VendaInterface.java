@@ -2,8 +2,6 @@ package interfaces;
 
 public interface VendaInterface {
 	
-	double calcularPrecoFinal();
-	
-	
+	double calcularPrecoFinal(double precoFinal);
 	
 }

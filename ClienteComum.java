@@ -7,7 +7,14 @@ public class ClienteComum extends Cliente {
 	}
 	
 	@Override
-	public double calcularPrecoFinal() {
-		return getPreco();
+	public double calcularPrecoFinal(double Preco) {
+		return Preco;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente Comum";
+	}
+	
+
 }

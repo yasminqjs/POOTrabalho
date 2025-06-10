@@ -28,7 +28,8 @@ public class Maquiagem extends ProdutoBeleza {
 
 	@Override
 	public String toString() {
-		return super.toString() + "Maquiagem [cor=" + cor + ", tipoDePele=" + tipoDePele + "]";
+		return super.toString() + " Categoria: Produto de Beleza (Maquiagem) | Cor: " + cor + " | Tipo De Pele: " + tipoDePele + " |";
+		
 	}
 
     

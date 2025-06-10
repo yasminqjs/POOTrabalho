@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface Exibivel {
-    void exibirInformacoes();
+public class Exibivel {
+
 }
