@@ -1,3 +1,4 @@
+
 package entidades;
 
 public abstract class ProdutoBeleza extends Produto {
@@ -28,7 +29,7 @@ public abstract class ProdutoBeleza extends Produto {
 
 	@Override
 	public String toString() {
-		return super.toString() + "ProdutoBeleza [internacional=" + internacional + ", luxo=" + luxo + "]";
+		return super.toString() + " Categoria: Beleza(" + internacional + ") | Luxo: " + luxo + " |";
 	}
 
    
